@@ -78,7 +78,7 @@ Then trigger a Jellyfin library scan (Dashboard → Libraries → Scan All Libra
 
 #### 4. Fix Seerr library sync and quality defaults
 
-If movies/shows stay stuck at "Requested" in Seerr even though they're downloaded:
+Seerr needs to know what's already in your Jellyfin library, otherwise movies/shows stay stuck at "Requested" even after download:
 
 1. **Enable Jellyfin libraries:** Settings → Jellyfin → toggle **Movies** and **TV** on → Save
 2. **Sync:** Click **Sync Libraries** then **Start Scan** on the same page
@@ -91,7 +91,7 @@ Prevents API scripts and Sonarr/Radarr from getting IP-banned after container re
 Tools → Options → Web UI → Authentication:
 - **Bypass authentication for clients on localhost:** ✅
 - **Bypass authentication for clients in whitelisted IP subnets:** ✅
-- **Whitelisted subnets:** `172.20.0.0/24, YOUR_LAN/24, 127.0.0.0/8`
+- **Whitelisted subnets:** `172.20.0.0/24, 10.10.0.0/24, 127.0.0.0/8` (adjust `10.10.0.0/24` to match your LAN subnet)
 
 ---
 
