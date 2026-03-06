@@ -76,15 +76,13 @@ If you enabled TRaSH naming in v1.7 and have duplicate show entries in Jellyfin:
 
 > **Note:** This script is LLM-generated and human-reviewed. Review [fix-sonarr-folders.sh](../scripts/fix-sonarr-folders.sh) before running — you are responsible for verifying it against your setup.
 
-Then trigger a Jellyfin library scan (Dashboard → Libraries → Scan All Libraries).
+#### 4. Jellyfin library scan + Seerr sync
 
-#### 4. Fix Seerr library sync and quality defaults
+After the folder rename above, scan Jellyfin and sync Seerr so everything is consistent:
 
-Seerr needs to know what's already in your Jellyfin library, otherwise movies/shows stay stuck at "Requested" even after download:
-
-1. **Enable Jellyfin libraries:** Settings → Jellyfin → toggle **Movies** and **TV** on → Save
-2. **Sync:** Click **Sync Libraries** then **Start Scan** on the same page
-3. **Update quality profiles:** Settings → Services → edit Radarr server → Quality Profile: `UHD Bluray + WEB`. Edit Sonarr server → Quality Profile: `Ultra-HD`
+1. **Jellyfin:** Dashboard → Libraries → Scan All Libraries
+2. **Seerr:** Settings → Jellyfin → toggle **Movies** and **TV** on → Save → click **Sync Libraries** then **Start Scan**
+3. **Seerr quality profiles:** Settings → Services → edit Radarr server → Quality Profile: `UHD Bluray + WEB`. Edit Sonarr server → Quality Profile: `Ultra-HD`
 
 #### 5. Whitelist local networks in qBittorrent
 
