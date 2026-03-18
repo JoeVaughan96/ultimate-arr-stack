@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.7.5] - 2026-03-18
+
+### Changed
+- **Bazarr** 1.5.5 → 1.5.6
+- **Cloudflared** 2026.2.0 → 2026.3.0
+- **Configarr** 1.23.0 → 1.24.0
+- **Pre-commit image cache TTL** increased from 1 hour to 24 hours to reduce registry rate-limiting during repeated commits
+
+### Documentation
+- **Plex setup guide**: Rewritten with full YAML example, option to run Plex alongside Jellyfin (not just replace), anchor link (`SETUP.md#plex`), and reference to old Plex compose in git history. Clarified that Seerr supports Plex natively
+
+---
+
 ## [1.7.3] - 2026-03-06
 
 ### Added
