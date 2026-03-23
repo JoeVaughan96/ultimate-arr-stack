@@ -13,7 +13,6 @@
 volumes:
   gluetun-config:
   qbittorrent-config:
-  sabnzbd-config:
   sonarr-config:
   prowlarr-config:
   radarr-config:
@@ -88,7 +87,6 @@ services:
       - "7878:7878"   # Radarr
       - "9696:9696"   # Prowlarr
       - "8085:8085"   # qBittorrent
-      - "8082:8080"   # SABnzbd
       - "8191:8191"   # FlareSolverr
     networks:
       arr-stack:
@@ -131,36 +129,6 @@ services:
     healthcheck:
       test: ["CMD-SHELL", "curl -sf http://localhost:8085/ && wget -q --spider --timeout=5 http://www.google.com"]
       interval: 2m
-      timeout: 15s
-      retries: 4
-      start_period: 60s
-
-  # ═══════════════════════════════════════════════════════════════════════════
-  # SABNZBD - Usenet download client. Downloads via VPN for extra security.
-  # Access: sabnzbd.lan | sabnzbd.yourdomain.com | NAS_IP:8082
-  # ═══════════════════════════════════════════════════════════════════════════
-  sabnzbd:
-    image: lscr.io/linuxserver/sabnzbd:4.5.5
-    container_name: sabnzbd
-    network_mode: "service:gluetun"
-    depends_on:
-      gluetun:
-        condition: service_healthy
-        restart: true
-    environment:
-      - PUID=${PUID}
-      - PGID=${PGID}
-      - TZ=${TZ}
-    volumes:
-      - sabnzbd-config:/config
-      - ${MEDIA_ROOT}:/data
-    labels:
-      - deunhealth.restart.on.unhealthy=true
-    restart: always
-    logging: *default-logging
-    healthcheck:
-      test: ["CMD-SHELL", "curl -sf http://localhost:8080/ && wget -q --spider --timeout=5 http://www.google.com"]
-      interval: 3m
       timeout: 15s
       retries: 4
       start_period: 60s
